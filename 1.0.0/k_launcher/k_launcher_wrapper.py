@@ -171,7 +171,7 @@ class k_wrapper:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Launch DCC software with specified package.")
-    parser.add_argument("config", help="Config")
+    parser.add_argument("-config", help="Config")
     parser.add_argument("-add", "--add", nargs='+', help="Add package.")
     parser.add_argument("-launch", "--launch", help="Launch DCC software.")
     parser.add_argument("-save", "--save", action="store_true", help="Save config.")
