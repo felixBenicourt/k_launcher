@@ -38,7 +38,7 @@ The `k_launcher` utility can be used from the command line to manage the environ
 To display the documentation and available options for `k_launcher`:
 
 ```bash
-rez env k_launcher -- run --info
+rez env k_launcher -- run -info
 ```
 ```bash
 This is the documentation for the k_launcher.
