@@ -3,7 +3,7 @@ import logging
 import subprocess
 import dcc_packages
 import utils
-import CONSTANTS
+from k_constants import CONSTANTS
 import os
 import k_config.main
 
