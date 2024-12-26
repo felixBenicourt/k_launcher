@@ -5,11 +5,13 @@ author = "felix benicourt"
 description = "Custom launcher command"
 
 build_command = False
-requires = ['k_config']
+requires = ['k_config', 'k_constants']
 
 def commands():
     env.PYTHONPATH.append(this.root)
     env.PYTHONPATH.append("{root}/k_launcher")
     env.PATH.append(this.root)
     env.PATH.append("{root}/k_launcher")
+
+
 
