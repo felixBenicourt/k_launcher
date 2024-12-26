@@ -65,28 +65,28 @@ launch command:
 ```
 
 ```bash
-rez env k_launcher -- run --config dev -launch maya
+rez env k_launcher -- run config dev -launch maya
 ```
 Launch the DCC with the custom config
 
 ```bash
-rez env k_launcher -- run --config <config_name> -save
+rez env k_launcher -- run config <config_name> -save
 ```
 This will save the context for the specified configuration.
 
 ```bash
-rez env k_launcher -- run --config <config_name> -load <context_name>
+rez env k_launcher -- run config <config_name> -load <context_name>
 ```
 This will load the environment context saved under <context_name> for the specified configuration.
 
 ```bash
-rez env k_launcher -- run --config dev -launch maya -add myPackage
+rez env k_launcher -- run config dev -launch maya -add myPackage
 ```
 This will launch Maya with the dev configuration and add myPackage to the environment.
 
 ```bash
-rez env k_launcher -- run --config dev -launch maya -add myPackage
-rez env k_launcher -- run --config main -launch houdini
+rez env k_launcher -- run config dev -launch maya -add myPackage
+rez env k_launcher -- run config main -launch houdini
 ```
 You can chain commands to launch different tools with their respective configurations:
 
