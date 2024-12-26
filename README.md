@@ -64,6 +64,8 @@ launch command:
    rez env k_launcher -- run -config value -launch value
 ```
 
+### 2. Manage dev config
+
 ```bash
 rez env k_launcher -- run -config dev -launch maya
 ```
