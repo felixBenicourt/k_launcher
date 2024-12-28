@@ -89,7 +89,7 @@ This will launch Maya with the dev configuration and add myPackage to the enviro
 
 ```bash
 rez env k_launcher -- run -config dev -add myPackage -launch maya
-rez env k_launcher -- run -config main -launch houdini
+rez env k_launcher -- run -switch iter -launch iter
 ```
 
 
