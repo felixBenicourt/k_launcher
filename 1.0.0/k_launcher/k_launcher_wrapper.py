@@ -135,8 +135,10 @@ def main():
     try:
         if args.info:
             k_launcher_info.print_k_launcher_documentation()
+
         elif args.release and args.prod_package:
             k_launcher_utils.release_package(args.release, args.prod_package)
+
         else:
             if args.echo:
                 wrapper.echo_settings()
