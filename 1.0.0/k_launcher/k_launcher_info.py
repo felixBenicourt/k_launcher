@@ -14,7 +14,7 @@ def print_k_launcher_documentation():
     This is the documentation for the k_launcher.
 
     Usage:
-        python scene_runner.py [args*]
+        python k_launcher_wrapper.py [args*]
 
     Arguments (args*):
         -config : name of the config you're working on.
@@ -31,10 +31,10 @@ def print_k_launcher_documentation():
         -package_release : specify the version of the package to release in PROD.
 
     Example Launch Commands:
-        python scene_runner.py --info
-        python scene_runner.py --config dev -launch maya -add myPackage
-        python scene_runner.py --save devConfig
-        python scene_runner.py --load prodConfig
+        python k_launcher_wrapper.py --info
+        python k_launcher_wrapper.py --config dev -launch maya -add myPackage
+        python k_launcher_wrapper.py --save devConfig
+        python k_launcher_wrapper.py --load prodConfig
 
     Config Structure:
         config : package : context/path/file.rxt
