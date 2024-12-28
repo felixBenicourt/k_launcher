@@ -1,9 +1,12 @@
+
+
 import os
 from k_constants import CONSTANTS
 import json
 import logging
 import shutil
 import os
+import re
 
 
 logging.basicConfig(level=logging.INFO)
@@ -116,3 +119,38 @@ def switch_rez_package_path(package_name, use_local=True):
         logging.info(f"Path for package '{package_name}' switched to: {package_path}")
     except Exception as e:
         logging.error(f"Failed to switch path for package '{package_name}': {e}")
+
+
+def update_version(file_path, new_version):
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+
+        new_content = re.search(r'version\s*=\s*"([^"]+)"', content)
+        new_content = new_content.group(1)
+        content_rewrite = content.replace(new_content, new_version)
+        logging.info(f"Version updated to {content_rewrite}")
+
+        with open(file_path, 'w') as file:
+            file.write(content_rewrite)
+
+    except Exception as e:
+        logging.error(f"Error occurred: {e}")
+
+
+def release_package(package_local, package_prod):
+    src_path = os.path.join(CONSTANTS. rootLocalFolder, package_local.split("-")[0], package_local.split("-")[-1])
+    dest_path = os.path.join(CONSTANTS.rootParseFolder, package_prod.split("-")[0], package_prod.split("-")[-1])
+
+    if not os.path.exists(src_path):
+        logging.error(f"Source package '{src_path}' not found in LOCAL.")
+        return
+
+    try:
+        shutil.copytree(src_path, dest_path)
+        update_version(f"{dest_path}\\package.py", package_prod.split("-")[-1])
+        logging.info(f"Package '{package_local}' successfully copied from LOCAL to PROD as {package_prod}.")
+
+    except Exception as e:
+        logging.error(f"Failed to copy package '{package_local}': {e}")
+
