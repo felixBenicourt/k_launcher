@@ -14,9 +14,9 @@ import k_launcher_utils
 logging.basicConfig(level=logging.INFO)
 
 
-class KWrapper(k_launcher_cmds.k_cmds):
+class k_wrapper(k_launcher_cmds.k_cmds):
     """
-    KWrapper class manages the environment setup and execution of DCC software.
+    k_wrapper class manages the environment setup and execution of DCC software.
 
     It handles various tasks such as setting and displaying configuration details,
     managing the environment variables using `rez`, and launching DCC software with
@@ -35,7 +35,7 @@ class KWrapper(k_launcher_cmds.k_cmds):
 
     def echo_settings(self):
         """
-        Logs the current configuration settings for the KWrapper instance.
+        Logs the current configuration settings for the k_wrapper instance.
 
         This function logs important settings such as the configuration set,
         the main package, the additional packages, the DCC software to launch, 
@@ -90,7 +90,7 @@ def main():
     """
     Main entry point for the script.
 
-    Parses command-line arguments and uses the `KWrapper` class to manage 
+    Parses command-line arguments and uses the `k_wrapper` class to manage 
     the configuration settings, execute the `rez` commands, and launch 
     the appropriate DCC software based on the provided options.
 
@@ -130,7 +130,7 @@ def main():
     parser.add_argument("-pr", "--package_release", type=str, help="Release the package on the PROD with the choosen version")
 
     args = parser.parse_args()
-    wrapper = KWrapper()
+    wrapper = k_wrapper()
 
     try:
         if args.info:
