@@ -9,14 +9,45 @@ import k_config.main
 import k_launcher_info
 import k_launcher_cmds
 
-
 logging.basicConfig(level=logging.INFO)
 
-
 class KWrapper(k_launcher_cmds.k_cmds):
+    """
+    KWrapper class manages the environment setup and execution of DCC software.
+
+    It handles various tasks such as setting and displaying configuration details,
+    managing the environment variables using `rez`, and launching DCC software with
+    the specified packages and settings.
+
+    Attributes:
+        config_set (str): The configuration set to use.
+        package (str): The package to load with the environment.
+        add_package (str): Additional packages to be added to the environment.
+        dcc_launch (str): The DCC software to launch.
+        save_config (str): The configuration to save.
+        load_config (str): The configuration to load.
+        grab_commande (list): List of packages to grab.
+        switch_commande (list): List of packages to switch.
+    """
 
     def echo_settings(self):
-        """Log the current settings for the wrapper."""
+        """
+        Logs the current configuration settings for the KWrapper instance.
+
+        This function logs important settings such as the configuration set,
+        the main package, the additional packages, the DCC software to launch, 
+        and any other saved settings.
+
+        Example log output:
+            Config set: dev
+            Package: myPackage
+            Additional packages: extraPackage1 extraPackage2
+            Launch DCC software: maya
+            Save config: devConfig
+            Load config: prodConfig
+            Grab packages: package1 package2
+            Switch packages: package3 package4
+        """
         logging.info(f"Config set: {self.config_set}")
         logging.info(f"Package: {self.package}")
         logging.info(f"Additional packages: {self.add_package}")
@@ -26,9 +57,20 @@ class KWrapper(k_launcher_cmds.k_cmds):
         logging.info(f"Grab packages: {self.grab_commande}")
         logging.info(f"Switch packages: {self.switch_commande}")
 
-
     def eval_rez_command(self):
-        """Executes the generated `rez` command."""
+        """
+        Executes the generated `rez` command to set up the environment.
+
+        This method generates a `rez` command using the instance's settings
+        and executes it using the `subprocess` module. If the command fails,
+        the error message is logged.
+
+        It handles the environment setup and manages launching the required 
+        DCC software with the specified configuration.
+
+        Raises:
+            subprocess.CalledProcessError: If the `rez` command fails to execute.
+        """
         try:
             env = os.environ.copy()
             command = f"{self.generate_rez_command()}"
@@ -40,8 +82,32 @@ class KWrapper(k_launcher_cmds.k_cmds):
             logging.error("Command Output:")
             logging.error(e.stdout)
 
-
 def main():
+    """
+    Main entry point for the script.
+
+    Parses command-line arguments and uses the `KWrapper` class to manage 
+    the configuration settings, execute the `rez` commands, and launch 
+    the appropriate DCC software based on the provided options.
+
+    Command-line arguments:
+        -i, --info          Display information about the tool.
+        -e, --echo          Display the current settings.
+        -c, --config        Set the config to use.
+        -p, --package       Load a package for the environment.
+        -a, --add           Add additional packages.
+        -lo, --load         Load a specific configuration.
+        -s, --save          Save the current configuration.
+        -g, --grab          Grab a package into LOCAL.
+        -w, --switch        Switch to the local version of the specified package.
+        -l, --launch        Launch the specified DCC software.
+    
+    Example:
+        python scene_runner.py -i
+        python scene_runner.py --config dev -launch maya -add myPackage
+        python scene_runner.py --save devConfig
+        python scene_runner.py --load prodConfig
+    """
     parser = argparse.ArgumentParser(description="scene_runner - A script to open scenes and run nodes.")
     parser.add_argument("-i", "--info", action="store_true", help="Display information")
     parser.add_argument("-e", "--echo", action="store_true", help="Display current settings")
@@ -98,4 +164,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
