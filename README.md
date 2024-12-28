@@ -52,6 +52,7 @@ Command-line arguments:
     -g, --grab          Grab a package into LOCAL.
     -w, --switch        Switch to the local version of the specified package.
     -l, --launch        Launch the specified DCC software.
+    -r, --release       Release the package on the PROD with the chosen version
 
 Example:
     python scene_runner.py -i
