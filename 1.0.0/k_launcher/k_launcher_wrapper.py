@@ -8,8 +8,11 @@ import sys
 import k_config.main
 import k_launcher_info
 import k_launcher_cmds
+import k_launcher_utils
+
 
 logging.basicConfig(level=logging.INFO)
+
 
 class KWrapper(k_launcher_cmds.k_cmds):
     """
@@ -82,6 +85,7 @@ class KWrapper(k_launcher_cmds.k_cmds):
             logging.error("Command Output:")
             logging.error(e.stdout)
 
+
 def main():
     """
     Main entry point for the script.
@@ -101,6 +105,7 @@ def main():
         -g, --grab          Grab a package into LOCAL.
         -w, --switch        Switch to the local version of the specified package.
         -l, --launch        Launch the specified DCC software.
+        -r, --release       Release the package on the PROD with the choosen version
     
     Example:
         python scene_runner.py -i
@@ -108,6 +113,7 @@ def main():
         python scene_runner.py --save devConfig
         python scene_runner.py --load prodConfig
     """
+
     parser = argparse.ArgumentParser(description="scene_runner - A script to open scenes and run nodes.")
     parser.add_argument("-i", "--info", action="store_true", help="Display information")
     parser.add_argument("-e", "--echo", action="store_true", help="Display current settings")
@@ -119,6 +125,8 @@ def main():
     parser.add_argument("-g", "--grab", type=str, nargs="+", help="Grab the package in LOCAL")
     parser.add_argument("-w", "--switch", type=str, nargs="+", help="Switch the packages to local version")
     parser.add_argument("-l", "--launch", type=str, help="Launch the DCC software")
+    parser.add_argument("-r", "--release", type=str, help="Release the package on the PROD with the choosen version")
+    parser.add_argument("-pr", "--prod_package", type=str, help="Release the package on the PROD with the choosen version")
 
     args = parser.parse_args()
     wrapper = KWrapper()
@@ -126,6 +134,8 @@ def main():
     try:
         if args.info:
             k_launcher_info.print_k_launcher_documentation()
+        elif args.release and args.prod_package:
+            k_launcher_utils.release_package(args.release, args.prod_package)
         else:
             if args.echo:
                 wrapper.echo_settings()
@@ -164,3 +174,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
