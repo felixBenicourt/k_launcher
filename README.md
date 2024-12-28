@@ -58,7 +58,7 @@ To display the documentation and available options for `k_launcher`:
      rez env k_launcher -- run -config <config_name> -pa <package_name> -add <additional_package> -save
      rez env k_launcher -- run -config <config_name> -load <saved_context>
      rez env k_launcher -- run -config <config_name> -launch <dcc_software>
-     rez env k_launcher -- run -i
+     rez env k_launcher -- run -info
      rez env k_launcher -- run -switch <package_name> -launch <name_launcher>
 
  Config Structure:
