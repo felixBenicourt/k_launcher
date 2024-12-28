@@ -91,7 +91,7 @@ This will launch Maya with the dev configuration and add myPackage to the enviro
 rez env k_launcher -- run -config dev -add myPackage -launch maya
 rez env k_launcher -- run -config main -launch houdini
 ```
-You can chain commands to launch different tools with their respective configurations:
+
 
 ## License
 ```text
