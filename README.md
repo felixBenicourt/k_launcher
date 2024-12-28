@@ -91,6 +91,16 @@ This will launch Maya with the dev configuration and add myPackage to the enviro
 
 ```bash
 rez env k_launcher -- run -config dev -add myPackage -launch maya
+```
+This will grab Iter latest version from the PROD to LOCAL.
+
+```bash
+rez env k_launcher -- run -grab iter
+```
+
+This will launch Iter from the LOCAL environment.
+
+```bash
 rez env k_launcher -- run -switch iter -launch iter
 ```
 
