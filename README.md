@@ -83,12 +83,12 @@ rez env k_launcher -- run -config <config_name> -load <context_name>
 This will load the environment context saved under <context_name> for the specified configuration.
 
 ```bash
-rez env k_launcher -- run -config dev -launch maya -add myPackage
+rez env k_launcher -- run -config dev -add myPackage -launch maya
 ```
 This will launch Maya with the dev configuration and add myPackage to the environment.
 
 ```bash
-rez env k_launcher -- run -config dev -launch maya -add myPackage
+rez env k_launcher -- run -config dev -add myPackage -launch maya
 rez env k_launcher -- run -config main -launch houdini
 ```
 You can chain commands to launch different tools with their respective configurations:
