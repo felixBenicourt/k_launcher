@@ -122,24 +122,48 @@ def switch_rez_package_path(package_name, use_local=True):
 
 
 def update_version(file_path, new_version):
+    """
+    Updates the version in a given file by replacing the current version with the new version.
+
+    Args:
+        file_path (str): The path to the file containing the version.
+        new_version (str): The new version to replace the current version.
+
+    Raises:
+        Exception: If an error occurs during the file read/write operation.
+    """
     try:
         with open(file_path, 'r') as file:
             content = file.read()
 
-        new_content = re.search(r'version\s*=\s*"([^"]+)"', content)
-        new_content = new_content.group(1)
-        content_rewrite = content.replace(new_content, new_version)
-        logging.info(f"Version updated to {content_rewrite}")
+        match = re.search(r'version\s*=\s*["\']?([^"\']+)["\']?', content)
 
-        with open(file_path, 'w') as file:
-            file.write(content_rewrite)
+        if match:
+            old_version = match.group(1)  # Extract the found version string
+            content_rewrite = content.replace(old_version, new_version)
+            logging.info(f"Version updated from {old_version} to {new_version}")
+
+            with open(file_path, 'w') as file:
+                file.write(content_rewrite)
+        else:
+            logging.error("Version not found in the file.")
 
     except Exception as e:
         logging.error(f"Error occurred: {e}")
 
 
 def release_package(package_local, package_prod):
-    src_path = os.path.join(CONSTANTS. rootLocalFolder, package_local.split("-")[0], package_local.split("-")[-1])
+    """
+    Copies a package from the local directory to the production directory and updates its version.
+
+    Args:
+        package_local (str): The name of the package in the local directory (e.g., 'iter-1.1.0').
+        package_prod (str): The name of the package in the production directory (e.g., 'iter-1.1.1').
+
+    Raises:
+        Exception: If the source package is not found or the copy operation fails.
+    """
+    src_path = os.path.join(CONSTANTS.rootLocalFolder, package_local.split("-")[0], package_local.split("-")[-1])
     dest_path = os.path.join(CONSTANTS.rootParseFolder, package_prod.split("-")[0], package_prod.split("-")[-1])
 
     if not os.path.exists(src_path):
