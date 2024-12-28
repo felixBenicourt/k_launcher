@@ -1,4 +1,5 @@
 
+
 import logging
 
 
@@ -13,29 +14,51 @@ def print_k_launcher_documentation():
     This is the documentation for the k_launcher.
 
     Usage:
-        rez env k_launcher -- wrapper args*
+        python scene_runner.py [args*]
 
     Arguments (args*):
         -config : name of the config you're working on.
-
-    Additional Arguments:
-        -pa : package you are working on.
-        -launch : launch the DCC using his name.
-        -add : add packages.
+        -package : package to load with the environment.
+        -add : additional packages to be added.
+        -launch : launch the DCC software by name.
+        -save : save the context/configuration.
+        -load : load the saved context/configuration.
+        -info : display information about the tool.
+        -echo : display the current settings.
         -grab : grab the package in PROD to LOCAL.
-        -save : save the context.
-        -load : load the context.
-        -info : listing of the options
+        -switch : switch the package to the local version.
+        -release : release the package in PROD with a specific version.
+        -package_release : specify the version of the package to release in PROD.
 
     Example Launch Commands:
-        rez env k_launcher -- run -config <config_name>
-        rez env k_launcher -- run -config <config_name> -pa <package_name> -add <additional_package> -save
-        rez env k_launcher -- run -config <config_name> -load <saved_context>
-        rez env k_launcher -- run -config <config_name> -launch <dcc_software>
+        python scene_runner.py --info
+        python scene_runner.py --config dev -launch maya -add myPackage
+        python scene_runner.py --save devConfig
+        python scene_runner.py --load prodConfig
 
     Config Structure:
         config : package : context/path/file.rxt
-    """
-    logging.info(documentation)
 
+    Class KWrapper:
+        The KWrapper class manages the environment setup and execution of DCC software.
+        It handles various tasks such as setting and displaying configuration details,
+        managing the environment variables using `rez`, and launching DCC software with
+        the specified packages and settings.
+
+        Attributes:
+            - config_set (str): The configuration set to use.
+            - package (str): The main package to load with the environment.
+            - add_package (str): Additional packages to be added to the environment.
+            - dcc_launch (str): The DCC software to launch.
+            - save_config (str): The configuration to save.
+            - load_config (str): The configuration to load.
+            - grab_commande (list): List of packages to grab.
+            - switch_commande (list): List of packages to switch.
+
+        Methods:
+            - echo_settings(): Logs the current configuration settings for the KWrapper instance.
+            - eval_rez_command(): Executes the generated `rez` command to set up the environment.
+    """
+
+    logging.info(documentation)
 
