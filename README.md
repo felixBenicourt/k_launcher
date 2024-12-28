@@ -54,12 +54,6 @@ Command-line arguments:
     -l, --launch        Launch the specified DCC software.
     -r, --release       Release the package on the PROD with the chosen version
 
-Example:
-    python scene_runner.py -i
-    python scene_runner.py --config dev -launch maya -add myPackage
-    python scene_runner.py --save devConfig
-    python scene_runner.py --load prodConfig
-
 Example Launch Commands:
     rez env k_launcher -- run -config <config_name>
     rez env k_launcher -- run -config <config_name> -pa <package_name> -add <additional_package> -save
@@ -67,6 +61,7 @@ Example Launch Commands:
     rez env k_launcher -- run -config <config_name> -launch <dcc_software>
     rez env k_launcher -- run -info
     rez env k_launcher -- run -switch <package_name> -launch <name_launcher>
+    rez env k_launcher -- run -r <package_name-version> -pr <name_launcher-version>
 
 Config Structure:
     config : package : context/path/file.rxt
