@@ -2,7 +2,7 @@
 
 import logging
 import os
-import utils
+import k_launcher_utils
 from k_constants import CONSTANTS
 
 
@@ -67,6 +67,7 @@ class k_cmds:
         self.grab_commande = None
         self.switch_commande = None
         self.dcc_launch = None
+        self.add_package = None
 
     def generate_rez_command(self):
         """
@@ -83,6 +84,7 @@ class k_cmds:
         switch_prod_local = []
         launch_cmd = []
 
+        self.package_to_command(command_parts)
         self.add_package_to_command(command_parts)
         self.handle_grab_command(package_list, switch_prod_local)
         self.handle_switch_command(package_list, switch_prod_local)
@@ -99,6 +101,16 @@ class k_cmds:
             )
             return rez_cmd
 
+    def package_to_command(self, command_parts):
+        """
+        init the specified package to the `rez` command.
+        
+        Args:
+            command_parts (list): The list to which the package will be added in the command.
+        """
+        if self.package:
+            command_parts.append(f" {self.package}")
+
     def add_package_to_command(self, command_parts):
         """
         Adds the specified package to the `rez` command.
@@ -106,8 +118,8 @@ class k_cmds:
         Args:
             command_parts (list): The list to which the package will be added in the command.
         """
-        if self.package:
-            command_parts.append(f" {self.package}")
+        if self.add_package:
+            command_parts.append(f" {self.add_package}")
 
     def handle_grab_command(self, package_list, switch_prod_local):
         """
@@ -121,7 +133,7 @@ class k_cmds:
             self.ensure_switch_prod_local(switch_prod_local)
             for package in self.grab_commande:
                 try:
-                    utils.grab_package_to_local(package)
+                    k_launcher_utils.grab_package_to_local(package)
                     package_list.append(f" {package}")
                 except Exception as e:
                     logging.error(f"Failed to grab package {package}: {e}")
@@ -170,7 +182,7 @@ class k_cmds:
         """
         if self.load_config and self.json_file_path:
             try:
-                json_data = utils.load_json_file(self.json_file_path)
+                json_data = k_launcher_utils.load_json_file(self.json_file_path)
                 load_command = f" -i {json_data[self.config_set][self.load_config]}"
                 command_parts.append(load_command)
             except KeyError:
@@ -187,7 +199,7 @@ class k_cmds:
         """
         if self.save_config and self.package and self.json_file_path:
             try:
-                json_data = utils.load_json_file(self.json_file_path)
+                json_data = k_launcher_utils.load_json_file(self.json_file_path)
                 rxt_name_file = f"{self.config_set}-{self.package}.rxt"
                 context_path = os.path.join(
                     CONSTANTS.root_folder, CONSTANTS.context_folder, rxt_name_file
@@ -198,7 +210,7 @@ class k_cmds:
                 else:
                     json_data[self.config_set] = {self.package: context_path}
 
-                utils.save_json_file(self.json_file_path, json_data)
+                k_launcher_utils.save_json_file(self.json_file_path, json_data)
                 save_command = f" -o {context_path}"
                 command_parts.append(save_command)
             except Exception as e:
