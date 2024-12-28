@@ -39,30 +39,36 @@ To display the documentation and available options for `k_launcher`:
 
 ```bash
  Usage:
-     rez env k_launcher -- wrapper args*
+rez env k_launcher -- wrapper args*
 
- Arguments (args*):
-     -config : name of the config you're working on.
+Command-line arguments:
+    -i, --info          Display information about the tool.
+    -e, --echo          Display the current settings.
+    -c, --config        Set the config to use.
+    -p, --package       Load a package for the environment.
+    -a, --add           Add additional packages.
+    -lo, --load         Load a specific configuration.
+    -s, --save          Save the current configuration.
+    -g, --grab          Grab a package into LOCAL.
+    -w, --switch        Switch to the local version of the specified package.
+    -l, --launch        Launch the specified DCC software.
 
- Additional Arguments:
-     -package -p : package you are working on.
-     -launch -l : launch the DCC using his name.
-     -add -a : add packages.
-     -grab -g : grab the package in PROD to LOCAL.
-     -save -s : save the context.
-     -load -la : load the context.
-     -info -i : listing of the options
+Example:
+    python scene_runner.py -i
+    python scene_runner.py --config dev -launch maya -add myPackage
+    python scene_runner.py --save devConfig
+    python scene_runner.py --load prodConfig
 
- Example Launch Commands:
-     rez env k_launcher -- run -config <config_name>
-     rez env k_launcher -- run -config <config_name> -pa <package_name> -add <additional_package> -save
-     rez env k_launcher -- run -config <config_name> -load <saved_context>
-     rez env k_launcher -- run -config <config_name> -launch <dcc_software>
-     rez env k_launcher -- run -info
-     rez env k_launcher -- run -switch <package_name> -launch <name_launcher>
+Example Launch Commands:
+    rez env k_launcher -- run -config <config_name>
+    rez env k_launcher -- run -config <config_name> -pa <package_name> -add <additional_package> -save
+    rez env k_launcher -- run -config <config_name> -load <saved_context>
+    rez env k_launcher -- run -config <config_name> -launch <dcc_software>
+    rez env k_launcher -- run -info
+    rez env k_launcher -- run -switch <package_name> -launch <name_launcher>
 
- Config Structure:
-     config : package : context/path/file.rxt
+Config Structure:
+    config : package : context/path/file.rxt
 ```
 
 ### 2. Manage dev config
