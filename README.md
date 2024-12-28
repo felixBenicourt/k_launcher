@@ -53,6 +53,7 @@ Command-line arguments:
     -w, --switch        Switch to the local version of the specified package.
     -l, --launch        Launch the specified DCC software.
     -r, --release       Release the package on the PROD with the chosen version
+    -pr, --package_release       version of the release on PROD
 
 Example Launch Commands:
     rez env k_launcher -- run -config <config_name>
