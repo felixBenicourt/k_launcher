@@ -106,6 +106,7 @@ def main():
         -w, --switch        Switch to the local version of the specified package.
         -l, --launch        Launch the specified DCC software.
         -r, --release       Release the package on the PROD with the chosen version
+        -pr, --package_release       version of the release on PROD
     
     Example:
         python scene_runner.py -i
@@ -126,7 +127,7 @@ def main():
     parser.add_argument("-w", "--switch", type=str, nargs="+", help="Switch the packages to local version")
     parser.add_argument("-l", "--launch", type=str, help="Launch the DCC software")
     parser.add_argument("-r", "--release", type=str, help="Release the package on the PROD with the choosen version")
-    parser.add_argument("-pr", "--prod_package", type=str, help="Release the package on the PROD with the choosen version")
+    parser.add_argument("-pr", "--package_release", type=str, help="Release the package on the PROD with the choosen version")
 
     args = parser.parse_args()
     wrapper = KWrapper()
