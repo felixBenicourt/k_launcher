@@ -35,7 +35,7 @@
 
 The `k_launcher` utility can be used from the command line to manage the environment and launch DCC tools. Below are the key commands:
 
-### 1. Manage dev config
+### Manage dev config
 
 ```bash
 rez env k_launcher -- rez -config dev -launch maya
