@@ -15,6 +15,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
     A class for managing Git repositories using subprocess commands.
     Extends the `k_repo` class from `k_launcher_repo`.
     """
+
     def start_ssh_agent(self):
         """
         Starts the SSH agent if not already running and adds the default SSH key.
@@ -36,6 +37,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
             logging.info("SSH key added to agent.")
         except subprocess.CalledProcessError as e:
             logging.error(f"Failed to add SSH key to agent: {e}", exc_info=True)
+
 
     def fetch_repository(self, path_folder, name):
         """
@@ -60,6 +62,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
         else:
             logging.warning(f"Repository '{name}' not found locally.")
 
+
     def pull_repository(self, path_folder, name):
         """
         Pulls the latest changes from the remote repository and merges them.
@@ -82,6 +85,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
                 logging.error(f"Error pulling repository '{name}': {e.stderr}", exc_info=True)
         else:
             logging.warning(f"Repository '{name}' not found locally.")
+
 
     def checkout_branch(self, path_folder, name, branch_name):
         """
@@ -107,6 +111,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
         else:
             logging.warning(f"Repository '{name}' not found locally.")
 
+
     def create_branch(self, path_folder, name, branch_name):
         """
         Creates a new branch in the repository and switches to it.
@@ -130,6 +135,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
                 logging.error(f"Error creating or checking out branch '{branch_name}' for '{name}': {e.stderr}", exc_info=True)
         else:
             logging.warning(f"Repository '{name}' not found locally.")
+
 
     def list_remote_branches(self, path_folder, name):
         """
@@ -202,6 +208,37 @@ class k_git_cmd(k_launcher_repo.k_repo):
         except Exception as e:
             logging.error(f"Unexpected error occurred: {e}", exc_info=True)
 
+
+    def commit_repository(self, path_folder, name, message, add_all=False):
+        """
+        Commits changes in the repository.
+
+        Args:
+            path_folder (str): Path to the parent folder containing the repository.
+            name (str): Name of the repository to commit changes.
+            message (str): Commit message.
+            add_all (bool): Whether to stage all changes before committing (default: False).
+
+        Logs:
+            - Info: When the changes are successfully committed.
+            - Warning: If the repository is not found locally.
+            - Error: If committing fails.
+        """
+        repo_path = os.path.join(path_folder, name)
+        if os.path.exists(repo_path):
+            try:
+                if add_all:
+                    subprocess.run(["git", "add", "--all"], cwd=repo_path, check=True)
+                    logging.info(f"Staged all changes in repository '{name}'")
+
+                subprocess.run(["git", "commit", "-m", message], cwd=repo_path, check=True)
+                logging.info(f"Committed changes to repository '{name}' with message: '{message}'")
+            except subprocess.CalledProcessError as e:
+                logging.error(f"Error committing changes to repository '{name}': {e.stderr}", exc_info=True)
+        else:
+            logging.warning(f"Repository '{name}' not found locally.")
+
+
     def show_commit_log(self, path_folder, name, n=5):
         """
         Displays the last `n` commits in the repository.
@@ -228,6 +265,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
         else:
             logging.warning(f"Repository '{name}' not found locally.")
 
+
     def tag_repository(self, path_folder, name, tag_name):
         """
         Tags the repository with a specified tag.
@@ -251,6 +289,7 @@ class k_git_cmd(k_launcher_repo.k_repo):
                 logging.error(f"Error tagging repository '{name}' with '{tag_name}': {e.stderr}", exc_info=True)
         else:
             logging.warning(f"Repository '{name}' not found locally.")
+
 
     def list_repository_history(self, path_folder, name):
         """
@@ -294,32 +333,4 @@ class k_git_cmd(k_launcher_repo.k_repo):
         else:
             logging.warning(f"Repository '{name}' not found locally.")
 
-    def commit_repository(self, path_folder, name, message, add_all=False):
-        """
-        Commits changes in the repository.
-
-        Args:
-            path_folder (str): Path to the parent folder containing the repository.
-            name (str): Name of the repository to commit changes.
-            message (str): Commit message.
-            add_all (bool): Whether to stage all changes before committing (default: False).
-
-        Logs:
-            - Info: When the changes are successfully committed.
-            - Warning: If the repository is not found locally.
-            - Error: If committing fails.
-        """
-        repo_path = os.path.join(path_folder, name)
-        if os.path.exists(repo_path):
-            try:
-                if add_all:
-                    subprocess.run(["git", "add", "--all"], cwd=repo_path, check=True)
-                    logging.info(f"Staged all changes in repository '{name}'")
-
-                subprocess.run(["git", "commit", "-m", message], cwd=repo_path, check=True)
-                logging.info(f"Committed changes to repository '{name}' with message: '{message}'")
-            except subprocess.CalledProcessError as e:
-                logging.error(f"Error committing changes to repository '{name}': {e.stderr}", exc_info=True)
-        else:
-            logging.warning(f"Repository '{name}' not found locally.")
 
