@@ -42,7 +42,7 @@ def parse_args():
 
     parser.add_argument("-pa", "--path", type=str, help="Folder path argument.")
     parser.add_argument("-gu", "--git_url", type=str, help="Git URL for cloning.")
-    parser.add_argument("-b", "--branch", type=str, help="Branch name for checkout.")
+    parser.add_argument("-b", "--branch", type=str, help="Branch name.")
     parser.add_argument("-m", "--msg", type=str, help="Message.")
 
     return parser.parse_args()
@@ -67,7 +67,15 @@ def main():
 
         if args.git_clone:
             if args.git_url and args.path:
-                wrapper.clone_repository(custom_url=args.git_url, path=args.path)
+                wrapper.clone_repository(
+                    custom_url=args.git_url, 
+                    path=args.path,
+                )
+            elif args.package:
+                wrapper.clone_repository(
+                    name=args.package, 
+                    path=os.path.join(args.path or CONSTANTS.rootLocalFolder, args.package),
+                )
             else:
                 logging.error("Missing required arguments for git clone: --git_url and --path.")
 
