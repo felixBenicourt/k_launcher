@@ -1,3 +1,4 @@
+
 # K_launcher
 
 ## Table of Contents
@@ -6,6 +7,7 @@
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Git Commands](#git-commands)
 - [License](#license)
 
 `k_launcher` is a command-line utility designed for managing different configurations and launching DCC (Digital Content Creation) tools such as Maya, Houdini, and more, with custom environment settings and packages. The tool simplifies the process of working with different configurations, packages, and contexts.
@@ -105,6 +107,63 @@ This will launch Iter from the LOCAL environment.
 rez env k_launcher -- rez -switch iter -launch iter
 ```
 
+## Git Commands
+
+`k_launcher` also supports Git-related functionality for managing repositories, branches, and commits. Below are the available Git commands:
+
+### 1. Clone a Git repository
+
+```bash
+rez env k_launcher -- git -clone_repo <repository_url> <local_folder> [optional_repo_folder_name]
+```
+
+### 2. Create a new branch
+
+```bash
+rez env k_launcher -- git -create_branch <repository_path> <repository_name> <new_branch_name>
+```
+
+### 3. Checkout an existing branch
+
+```bash
+rez env k_launcher -- git -checkout_branch <repository_path> <repository_name> <branch_name>
+```
+
+### 4. Check the repository status
+
+```bash
+rez env k_launcher -- git -status <repository_path> <repository_name>
+```
+
+### 5. Pull the latest changes from remote
+
+```bash
+rez env k_launcher -- git -pull <repository_path> <repository_name>
+```
+
+### 6. Push local commits to the remote repository
+
+```bash
+rez env k_launcher -- git -push <repository_path> <repository_name>
+```
+
+### 7. Show the commit log
+
+```bash
+rez env k_launcher -- git -log <repository_path> <repository_name>
+```
+
+### Example Git Commands
+
+```bash
+rez env k_launcher -- git -clone_repo https://example.com/repo.git /path/to/folder my-repo
+rez env k_launcher -- git -create_branch /path/to/folder my-repo new-feature-branch
+rez env k_launcher -- git -checkout_branch /path/to/folder my-repo main
+rez env k_launcher -- git -status /path/to/folder my-repo
+rez env k_launcher -- git -pull /path/to/folder my-repo
+rez env k_launcher -- git -push /path/to/folder my-repo
+rez env k_launcher -- git -log /path/to/folder my-repo
+```
 
 ## License
 ```text
@@ -134,8 +193,4 @@ subject to the following conditions:
      FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
      IN THE SOFTWARE.
 ```
-
-
-
-
 
