@@ -121,13 +121,10 @@ rez env k_launcher -- git -log <repository_path> <repository_name>
 ### Example Git Commands
 
 ```bash
-rez env k_launcher -- git -clone_repo https://example.com/repo.git /path/to/folder my-repo
-rez env k_launcher -- git -create_branch /path/to/folder my-repo new-feature-branch
-rez env k_launcher -- git -checkout_branch /path/to/folder my-repo main
-rez env k_launcher -- git -status /path/to/folder my-repo
-rez env k_launcher -- git -pull /path/to/folder my-repo
-rez env k_launcher -- git -push /path/to/folder my-repo
-rez env k_launcher -- git -log /path/to/folder my-repo
+rez env k_launcher -- git -git_clone -p my-repo
+rez env k_launcher -- git -checkout_branch -pa my-repo -b main
+rez env k_launcher -- git -pull -pa my-repo
+rez env k_launcher -- git -pa my-repo
 ```
 
 ## License
