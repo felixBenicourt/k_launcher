@@ -35,42 +35,7 @@
 
 The `k_launcher` utility can be used from the command line to manage the environment and launch DCC tools. Below are the key commands:
 
-### 1. Display Info
-
-To display the documentation and available options for `k_launcher`:
-
-```bash
- Usage:
-rez env k_launcher -- wrapper args*
-
-Command-line arguments:
-    -i, --info          Display information about the tool.
-    -e, --echo          Display the current settings.
-    -c, --config        Set the config to use.
-    -p, --package       Load a package for the environment.
-    -a, --add           Add additional packages.
-    -lo, --load         Load a specific configuration.
-    -s, --save          Save the current configuration.
-    -g, --grab          Grab a package into LOCAL.
-    -w, --switch        Switch to the local version of the specified package.
-    -l, --launch        Launch the specified DCC software.
-    -r, --release       Release the package on the PROD with the chosen version
-    -pr, --package_release       version of the release on PROD
-
-Example Launch Commands:
-    rez env k_launcher -- rez -config <config_name>
-    rez env k_launcher -- rez -config <config_name> -pa <package_name> -add <additional_package> -save
-    rez env k_launcher -- rez -config <config_name> -load <saved_context>
-    rez env k_launcher -- rez -config <config_name> -launch <dcc_software>
-    rez env k_launcher -- rez -info
-    rez env k_launcher -- rez -switch <package_name> -launch <name_launcher>
-    rez env k_launcher -- rez -r <package_name-version> -pr <name_launcher-version>
-
-Config Structure:
-    config : package : context/path/file.rxt
-```
-
-### 2. Manage dev config
+### 1. Manage dev config
 
 ```bash
 rez env k_launcher -- rez -config dev -launch maya
