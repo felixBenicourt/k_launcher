@@ -56,13 +56,13 @@ Command-line arguments:
     -pr, --package_release       version of the release on PROD
 
 Example Launch Commands:
-    rez env k_launcher -- run -config <config_name>
-    rez env k_launcher -- run -config <config_name> -pa <package_name> -add <additional_package> -save
-    rez env k_launcher -- run -config <config_name> -load <saved_context>
-    rez env k_launcher -- run -config <config_name> -launch <dcc_software>
-    rez env k_launcher -- run -info
-    rez env k_launcher -- run -switch <package_name> -launch <name_launcher>
-    rez env k_launcher -- run -r <package_name-version> -pr <name_launcher-version>
+    rez env k_launcher -- rez -config <config_name>
+    rez env k_launcher -- rez -config <config_name> -pa <package_name> -add <additional_package> -save
+    rez env k_launcher -- rez -config <config_name> -load <saved_context>
+    rez env k_launcher -- rez -config <config_name> -launch <dcc_software>
+    rez env k_launcher -- rez -info
+    rez env k_launcher -- rez -switch <package_name> -launch <name_launcher>
+    rez env k_launcher -- rez -r <package_name-version> -pr <name_launcher-version>
 
 Config Structure:
     config : package : context/path/file.rxt
@@ -71,38 +71,38 @@ Config Structure:
 ### 2. Manage dev config
 
 ```bash
-rez env k_launcher -- run -config dev -launch maya
+rez env k_launcher -- rez -config dev -launch maya
 ```
 Launch the DCC with the custom config
 
 ```bash
-rez env k_launcher -- run -config <config_name> -save
+rez env k_launcher -- rez -config <config_name> -save
 ```
 This will save the context for the specified configuration.
 
 ```bash
-rez env k_launcher -- run -config <config_name> -load <context_name>
+rez env k_launcher -- rez -config <config_name> -load <context_name>
 ```
 This will load the environment context saved under <context_name> for the specified configuration.
 
 ```bash
-rez env k_launcher -- run -config dev -add myPackage -launch maya
+rez env k_launcher -- rez -config dev -add myPackage -launch maya
 ```
 This will launch Maya with the dev configuration and add myPackage to the environment.
 
 ```bash
-rez env k_launcher -- run -config dev -add myPackage -launch maya
+rez env k_launcher -- rez -config dev -add myPackage -launch maya
 ```
 This will grab Iter latest version from the PROD to LOCAL.
 
 ```bash
-rez env k_launcher -- run -grab iter
+rez env k_launcher -- rez -grab iter
 ```
 
 This will launch Iter from the LOCAL environment.
 
 ```bash
-rez env k_launcher -- run -switch iter -launch iter
+rez env k_launcher -- rez -switch iter -launch iter
 ```
 
 
