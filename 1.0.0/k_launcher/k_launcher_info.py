@@ -112,6 +112,24 @@ def print_k_launcher_documentation_git():
                 - Path to the local folder containing the repository.
                 - Name of the repository.
 
+        -tag : Tag the repository.
+            Parameters:
+                - Path to the local folder containing the repository.
+                - Name of the repository.
+
+        -history : Display the history of the repository.
+            Parameters:
+                - Path to the local folder containing the repository.
+                - Name of the repository.
+
+        -path : Folder path argument.
+
+        -git_url : Git URL for cloning.
+                
+        -branch : Branch name.
+                
+        -msg : Message.
+
     Example Git Commands:
         python k_launcher_git.py -clone_repo https://example.com/repo.git /path/to/folder my-repo
         python k_launcher_git.py -create_branch /path/to/folder my-repo new-feature-branch
