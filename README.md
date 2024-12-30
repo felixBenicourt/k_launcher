@@ -89,41 +89,6 @@ Class KLauncher_rez:
 """
 ```
 
-```bash
-rez env k_launcher -- rez -config dev -launch maya
-```
-Launch the DCC with the custom config
-
-```bash
-rez env k_launcher -- rez -config <config_name> -save
-```
-This will save the context for the specified configuration.
-
-```bash
-rez env k_launcher -- rez -config <config_name> -load <context_name>
-```
-This will load the environment context saved under <context_name> for the specified configuration.
-
-```bash
-rez env k_launcher -- rez -config dev -add myPackage -launch maya
-```
-This will launch Maya with the dev configuration and add myPackage to the environment.
-
-```bash
-rez env k_launcher -- rez -config dev -add myPackage -launch maya
-```
-This will grab Iter latest version from the PROD to LOCAL.
-
-```bash
-rez env k_launcher -- rez -grab iter
-```
-
-This will launch Iter from the LOCAL environment.
-
-```bash
-rez env k_launcher -- rez -switch iter -launch iter
-```
-
 ## Git Commands
 
 `k_launcher` also supports Git-related functionality for managing repositories, branches, and commits.
@@ -197,57 +162,6 @@ Description:
 """
 ```
 
-
-### 1. Clone a Git repository
-
-```bash
-rez env k_launcher -- git -clone_repo <repository_url> <local_folder> [optional_repo_folder_name]
-```
-
-### 2. Create a new branch
-
-```bash
-rez env k_launcher -- git -create_branch <repository_path> <repository_name> <new_branch_name>
-```
-
-### 3. Checkout an existing branch
-
-```bash
-rez env k_launcher -- git -checkout_branch <repository_path> <repository_name> <branch_name>
-```
-
-### 4. Check the repository status
-
-```bash
-rez env k_launcher -- git -status <repository_path> <repository_name>
-```
-
-### 5. Pull the latest changes from remote
-
-```bash
-rez env k_launcher -- git -pull <repository_path> <repository_name>
-```
-
-### 6. Push local commits to the remote repository
-
-```bash
-rez env k_launcher -- git -push <repository_path> <repository_name>
-```
-
-### 7. Show the commit log
-
-```bash
-rez env k_launcher -- git -log <repository_path> <repository_name>
-```
-
-### Example Git Commands
-
-```bash
-rez env k_launcher -- git -git_clone -p my-repo
-rez env k_launcher -- git -checkout_branch -pa my-repo -b main
-rez env k_launcher -- git -pull -pa my-repo
-rez env k_launcher -- git -pa my-repo
-```
 
 ## License
 ```text
