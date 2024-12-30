@@ -37,7 +37,7 @@
 
 The `k_launcher` utility can be used from the command line to manage the environment and launch DCC tools.
 
-```python
+```text
 """
 This is the documentation for the k_launcher Rez Functionality.
 
