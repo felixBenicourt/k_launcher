@@ -39,8 +39,8 @@ def print_k_launcher_documentation_rez():
     Config Structure:
         config : package : context/path/file.rxt
 
-    Class k_wrapper:
-        The k_wrapper class manages the environment setup and execution of DCC software.
+    Class KLauncher_rez:
+        The KLauncher_rez class manages the environment setup and execution of DCC software.
         It handles various tasks such as setting and displaying configuration details,
         managing the environment variables using `rez`, and launching DCC software with
         the specified packages and settings.
@@ -56,7 +56,7 @@ def print_k_launcher_documentation_rez():
             - switch_commande (list): List of packages to switch.
 
         Methods:
-            - echo_settings(): Logs the current configuration settings for the k_wrapper instance.
+            - echo_settings(): Logs the current configuration settings for the KLauncher_rez instance.
             - eval_rez_command(): Executes the generated `rez` command to set up the environment.
     """
 
