@@ -1,217 +1,160 @@
 
 
+import argparse
 import logging
+import subprocess
 import os
+import sys
+import k_config.main
+import k_launcher_info
+import k_launcher_rez_cmds
 import k_launcher_utils
-from k_constants import CONSTANTS
 
 
 logging.basicConfig(level=logging.INFO)
 
 
-class k_cmds:
+class KLauncher_rez(k_launcher_rez_cmds.k_cmds):
     """
-    A class that encapsulates commands for generating and managing `rez` environment setup commands.
-    
-    This class provides functionality to configure and generate the `rez` command, handle packages, 
-    and manage configuration settings for DCC software launching. The generated command includes 
-    parameters for packages, configuration loading/saving, environment setup, and launching DCC software.
+    KLauncher_rez class manages the environment setup and execution of DCC software.
+
+    It handles various tasks such as setting and displaying configuration details,
+    managing the environment variables using `rez`, and launching DCC software with
+    the specified packages and settings.
 
     Attributes:
-        json_file_path (str, optional): Path to the JSON file used for configuration loading/saving.
-        config_set (str, optional): Configuration set name to be used for the command.
-        package (str, optional): Package to be included in the environment setup.
-        save_config (str, optional): Configuration to be saved.
-        load_config (str, optional): Configuration to be loaded.
-        grab_commande (list, optional): List of packages to be grabbed locally.
-        switch_commande (list, optional): List of packages to switch to the local version.
-        dcc_launch (str, optional): DCC software launch command.
-
-    Methods:
-        generate_rez_command(): 
-            Generates the full `rez` command string for environment setup and DCC software launch.
-        
-        add_package_to_command(command_parts): 
-            Adds the specified package to the `rez` command.
-        
-        handle_grab_command(package_list, switch_prod_local): 
-            Handles the grab command by ensuring packages are grabbed locally.
-        
-        handle_switch_command(package_list, switch_prod_local): 
-            Handles the switch command by ensuring packages are switched to local versions.
-        
-        ensure_switch_prod_local(switch_prod_local): 
-            Ensures that the switch to the local folder is applied when necessary.
-        
-        add_dcc_launch_to_command(launch_cmd): 
-            Adds the command to launch the DCC software to the `rez` command.
-        
-        handle_load_config(command_parts): 
-            Handles loading configuration from a JSON file and appends the necessary command.
-        
-        handle_save_config(command_parts): 
-            Handles saving configuration to a JSON file and appends the necessary command.
+        config_set (str): The configuration set to use.
+        package (str): The package to load with the environment.
+        add_package (str): Additional packages to be added to the environment.
+        dcc_launch (str): The DCC software to launch.
+        save_config (str): The configuration to save.
+        load_config (str): The configuration to load.
+        grab_commande (list): List of packages to grab.
+        switch_commande (list): List of packages to switch.
     """
-    def __init__(self, json_file_path=None):
-        """
-        Initializes the k_cmds instance with optional configuration parameters.
-        
-        Args:
-            json_file_path (str, optional): Path to the JSON file used for configuration loading/saving.
-        """
-        self.json_file_path = json_file_path
-        self.config_set = None
-        self.package = None
-        self.save_config = None
-        self.load_config = None
-        self.grab_commande = None
-        self.switch_commande = None
-        self.dcc_launch = None
-        self.add_package = None
 
-    def generate_rez_command(self):
+    def echo_settings(self):
         """
-        Generates the full `rez` command for environment setup.
+        Logs the current configuration settings for the KLauncher_rez instance.
 
-        This method assembles various parts of the `rez` command based on the instance attributes,
-        including environment variables, package handling, configuration loading/saving, and DCC software launch.
-        
-        Returns:
-            str: The generated `rez` command.
+        This function logs important settings such as the configuration set,
+        the main package, the additional packages, the DCC software to launch, 
+        and any other saved settings.
+
+        Example log output:
+            Config set: dev
+            Package: myPackage
+            Additional packages: extraPackage1 extraPackage2
+            Launch DCC software: maya
+            Save config: devConfig
+            Load config: prodConfig
+            Grab packages: package1 package2
+            Switch packages: package3 package4
         """
-        command_parts = []
-        package_list = []
-        switch_prod_local = []
-        launch_cmd = []
+        logging.info(f"Config set: {self.config_set}")
+        logging.info(f"Package: {self.package}")
+        logging.info(f"Additional packages: {self.add_package}")
+        logging.info(f"Launch DCC software: {self.dcc_launch}")
+        logging.info(f"Save config: {self.save_config}")
+        logging.info(f"Load config: {self.load_config}")
+        logging.info(f"Grab packages: {self.grab_commande}")
+        logging.info(f"Switch packages: {self.switch_commande}")
 
-        self.package_to_command(command_parts)
-        self.add_package_to_command(command_parts)
-        self.handle_grab_command(package_list, switch_prod_local)
-        self.handle_switch_command(package_list, switch_prod_local)
-        self.add_dcc_launch_to_command(launch_cmd)
-        self.handle_load_config(command_parts)
-        self.handle_save_config(command_parts)
+    def eval_rez_command(self):
+        """
+        Executes the generated `rez` command to set up the environment.
 
-        if not switch_prod_local:
-            return f"rez env{''.join(command_parts)} {''.join(launch_cmd)}"
+        This method generates a `rez` command using the instance's settings
+        and executes it using the `subprocess` module. If the command fails,
+        the error message is logged.
+
+        It handles the environment setup and manages launching the required 
+        DCC software with the specified configuration.
+
+        Raises:
+            subprocess.CalledProcessError: If the `rez` command fails to execute.
+        """
+        try:
+            env = os.environ.copy()
+            command = f"{self.generate_rez_command()}"
+            logging.info(f"Executing command: {command}")
+            subprocess.run(command, shell=True, check=True, capture_output=True, text=True, env=env)
+
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Error executing command: {e}")
+            logging.error("Command Output:")
+            logging.error(e.stdout)
+
+
+def main():
+    """
+    Main entry point for the script.
+
+    Parses command-line arguments and uses the `KLauncher_rez` class to manage 
+    the configuration settings, execute the `rez` commands, and launch 
+    the appropriate DCC software based on the provided options.
+    """
+
+    parser = argparse.ArgumentParser(description="k_launcher_rez - A script to manage packages and env with rez.")
+    parser.add_argument("-i", "--info", action="store_true", help="Display information")
+    parser.add_argument("-e", "--echo", action="store_true", help="Display current settings")
+    parser.add_argument("-c", "--config", type=str, help="Set config")
+    parser.add_argument("-p", "--package", type=str, help="Load package")
+    parser.add_argument("-a", "--add", type=str, nargs="+", help="Add package")
+    parser.add_argument("-lo", "--load", type=str, help="Load config")
+    parser.add_argument("-s", "--save", type=str, help="Save config")
+    parser.add_argument("-g", "--grab", type=str, nargs="+", help="Grab the package in LOCAL")
+    parser.add_argument("-w", "--switch", type=str, nargs="+", help="Switch the packages to local version")
+    parser.add_argument("-l", "--launch", type=str, help="Launch the DCC software")
+    parser.add_argument("-r", "--release", type=str, help="Release the package on the PROD with the choosen version")
+    parser.add_argument("-pr", "--package_release", type=str, help="Release the package on the PROD with the choosen version")
+
+    args = parser.parse_args()
+    wrapper = KLauncher_rez()
+
+    try:
+        if args.info:
+            k_launcher_info.print_k_launcher_documentation_rez()
+
+        elif args.release and args.prod_package:
+            k_launcher_utils.release_package(args.release, args.prod_package)
+
         else:
-            rez_cmd = (
-                f"set REZ_PACKAGES_PATH={switch_prod_local[0]} rez env"
-                f"{''.join(package_list)} {''.join(launch_cmd)}"
-            )
-            return rez_cmd
+            if args.echo:
+                wrapper.echo_settings()
+                k_config.main.print_rez_env_variables()
 
-    def package_to_command(self, command_parts):
-        """
-        init the specified package to the `rez` command.
-        
-        Args:
-            command_parts (list): The list to which the package will be added in the command.
-        """
-        if self.package:
-            command_parts.append(f" {self.package}")
+            if args.config:
+                wrapper.config_set = args.config
 
-    def add_package_to_command(self, command_parts):
-        """
-        Adds the specified package to the `rez` command.
-        
-        Args:
-            command_parts (list): The list to which the package will be added in the command.
-        """
-        if self.add_package:
-            command_parts.append(f" {self.add_package}")
+            if args.package:
+                wrapper.package = args.package
 
-    def handle_grab_command(self, package_list, switch_prod_local):
-        """
-        Handles the grab command by ensuring packages are grabbed locally.
-        
-        Args:
-            package_list (list): The list to which the grabbed packages will be added in the command.
-            switch_prod_local (list): The list that tracks whether packages need to be switched to local.
-        """
-        if self.grab_commande:
-            self.ensure_switch_prod_local(switch_prod_local)
-            for package in self.grab_commande:
-                try:
-                    k_launcher_utils.grab_package_to_local(package)
-                    package_list.append(f" {package}")
-                except Exception as e:
-                    logging.error(f"Failed to grab package {package}: {e}")
+            if args.add:
+                wrapper.add_package = " ".join(args.add)
 
-    def handle_switch_command(self, package_list, switch_prod_local):
-        """
-        Handles the switch command by ensuring packages are switched to local versions.
-        
-        Args:
-            package_list (list): The list to which the switched packages will be added in the command.
-            switch_prod_local (list): The list that tracks whether packages need to be switched to local.
-        """
-        if self.switch_commande:
-            self.ensure_switch_prod_local(switch_prod_local)
-            for package in self.switch_commande:
-                package_list.append(f" {package}")
+            if args.load:
+                wrapper.load_config = args.load
 
-    def ensure_switch_prod_local(self, switch_prod_local):
-        """
-        Ensures that the switch to the local folder is applied when necessary.
-        
-        Args:
-            switch_prod_local (list): The list that tracks whether packages need to be switched to local.
-        """
-        if not switch_prod_local:
-            switch_prod_local.append(
-                f"{CONSTANTS.rootLocalFolder};{CONSTANTS.rootParseFolder} &&"
-            )
+            if args.save:
+                wrapper.save_config = args.save
 
-    def add_dcc_launch_to_command(self, launch_cmd):
-        """
-        Adds the command to launch the DCC software to the `rez` command.
-        
-        Args:
-            launch_cmd (list): The list to which the launch command will be added.
-        """
-        if self.dcc_launch:
-            launch_cmd.append(f"-- {self.dcc_launch}")
+            if args.grab:
+                wrapper.grab_commande = args.grab
 
-    def handle_load_config(self, command_parts):
-        """
-        Handles loading configuration from a JSON file and appends the necessary command.
-        
-        Args:
-            command_parts (list): The list to which the load configuration command will be added.
-        """
-        if self.load_config and self.json_file_path:
-            try:
-                json_data = k_launcher_utils.load_json_file(self.json_file_path)
-                load_command = f" -i {json_data[self.config_set][self.load_config]}"
-                command_parts.append(load_command)
-            except KeyError:
-                logging.error(f"Load config '{self.load_config}' not found in '{self.config_set}'.")
-            except Exception as e:
-                logging.error(f"Error loading config from {self.json_file_path}: {e}")
+            if args.switch:
+                wrapper.switch_commande = args.switch
 
-    def handle_save_config(self, command_parts):
-        """
-        Handles saving configuration to a JSON file and appends the necessary command.
-        
-        Args:
-            command_parts (list): The list to which the save configuration command will be added.
-        """
-        if self.save_config and self.package and self.json_file_path:
-            try:
-                json_data = k_launcher_utils.load_json_file(self.json_file_path)
-                rxt_name_file = f"{self.config_set}-{self.package}.rxt"
-                context_path = os.path.join(
-                    CONSTANTS.root_folder, CONSTANTS.context_folder, rxt_name_file
-                )
+            if args.launch:
+                wrapper.dcc_launch = args.launch
 
-                if self.config_set in json_data:
-                    json_data[self.config_set][self.package] = context_path
-                else:
-                    json_data[self.config_set] = {self.package: context_path}
+            wrapper.eval_rez_command()
 
-                k_launcher_utils.save_json_file(self.json_file_path, json_data)
-                save_command = f" -o {context_path}"
-                command_parts.append(save_command)
-            except Exception as e:
-                logging.error(f"Error saving config to {self.json_file_path}: {e}")
+    except Exception as e:
+        logging.error(f"An error occurred: {e}", exc_info=True)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+
