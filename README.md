@@ -38,7 +38,6 @@
 The `k_launcher` utility can be used from the command line to manage the environment and launch DCC tools.
 
 ```text
-"""
 This is the documentation for the k_launcher Rez Functionality.
 
 Usage:
@@ -86,7 +85,6 @@ Class KLauncher_rez:
     Methods:
         - echo_settings(): Logs the current configuration settings for the KLauncher_rez instance.
         - eval_rez_command(): Executes the generated `rez` command to set up the environment.
-"""
 ```
 
 ## Git Commands
@@ -94,8 +92,7 @@ Class KLauncher_rez:
 `k_launcher` also supports Git-related functionality for managing repositories, branches, and commits.
 
 
-```python
-"""
+```text
 Documentation for k_launcher Git Functionality:
 
 Usage:
@@ -159,7 +156,6 @@ Description:
     It provides commands for common Git operations such as cloning repositories, creating and switching branches, 
     and synchronizing with remote repositories. These commands help streamline version control tasks 
     within the context of a production pipeline.
-"""
 ```
 
 
