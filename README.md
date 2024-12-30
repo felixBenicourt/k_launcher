@@ -23,7 +23,7 @@
 
 - `rez` package manager installed
 - Required software installed (e.g., Maya, Houdini)
-- Correct configuration files set up in the `CONTEXT` folder. These configuration files (e.g., `dev-k_config.rxt`, `main-k_config.rxt`) should define the environment variables and packages needed for your workflow.
+- Correct configuration files set up in the `CONTEXT` folder. These configuration files should define the environment variables and packages needed for your workflow.
 
 ## Installation
 
