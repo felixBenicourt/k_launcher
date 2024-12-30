@@ -29,7 +29,7 @@
 
 1. Ensure `rez` is installed and configured in your environment.
 2. Clone the repository or copy the `k_launcher` tool to your local system.
-3. Set up the `CONTEXT` folder with the necessary configuration files (e.g., `dev-k_config.rxt`, `main-k_config.rxt`).
+3. Set up the `CONTEXT` folder with the necessary configuration files.
 
 ## Usage
 
