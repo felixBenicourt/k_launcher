@@ -74,70 +74,57 @@ def print_k_launcher_documentation_git():
         python k_launcher_git.py [args*]
 
     Arguments (args*):
-        -clone_repo : Clone a Git repository.
+        -i, --info : Display information about the tool.
+        -p, --package : Load package.
+        -co, --context : Display the current context.
+        -gc, --git_clone : Clone a Git repository.
             Parameters:
                 - URL of the repository.
                 - Local folder to clone into.
                 - Optional name for the repository folder.
-
-        -create_branch : Create a new branch in the specified repository.
+        -gf, --git_fetch : Fetch the latest changes from the remote repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-                - Name of the new branch.
-
-        -checkout_branch : Switch to a specific branch in the repository.
+        -gp, --git_pull : Update the repository by pulling the latest changes from the remote.
+            Parameters:
+                - Path to the local folder containing the repository.
+                - Name of the repository.
+        -ch, --git_check : Switch to a specific branch in the repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
                 - Name of the branch to checkout.
-
-        -status : Show the status of the local repository.
+        -c, --git_commit : Commit changes to the repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-
-        -pull : Update the repository by pulling the latest changes from the remote.
+                - Commit message.
+        -cr, --git_create : Create a new branch in the specified repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-
-        -push : Push local commits to the remote repository.
+                - Name of the new branch.
+        -gl, --git_list : List remote branches of the repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-
-        -log : Display the commit log for the repository.
+        -log, --git_log : Display the commit log for the repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-
-        -tag : Tag the repository.
+        -t, --git_tag : Tag the repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-
-        -history : Display the history of the repository.
+        -gh, --history : Display the history of the repository.
             Parameters:
                 - Path to the local folder containing the repository.
                 - Name of the repository.
-
-        -path : Folder path argument.
-
-        -git_url : Git URL for cloning.
-                
-        -branch : Branch name.
-                
-        -msg : Message.
-
-    Example Git Commands:
-        python k_launcher_git.py -clone_repo https://example.com/repo.git /path/to/folder my-repo
-        python k_launcher_git.py -create_branch /path/to/folder my-repo new-feature-branch
-        python k_launcher_git.py -checkout_branch /path/to/folder my-repo main
-        python k_launcher_git.py -status /path/to/folder my-repo
-        python k_launcher_git.py -pull /path/to/folder my-repo
-        python k_launcher_git.py -push /path/to/folder my-repo
-        python k_launcher_git.py -log /path/to/folder my-repo
+        -pa, --path : Folder path argument.
+        -gu, --git_url : Git URL for cloning.
+        -b, --branch : Branch name.
+        -m, --msg : Commit message.
 
     Description:
         The Git functionality of `k_launcher` is designed to simplify the process of managing Git repositories. 
