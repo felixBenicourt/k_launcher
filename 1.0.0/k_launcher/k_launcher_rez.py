@@ -153,16 +153,16 @@ def main():
     parser.add_argument("-g", "--grab", type=str, nargs="+", help="Grab the package in LOCAL")
     parser.add_argument("-w", "--switch", type=str, nargs="+", help="Switch the packages to local version")
     parser.add_argument("-l", "--launch", type=str, help="Launch the DCC software")
-    parser.add_argument("-r", "--release", type=str, help="Choosen LOCAL package to release")
-    parser.add_argument("-pr", "--prod_release", type=str, help="Choosen version of the package to release on PROD")
+    parser.add_argument("-r", "--release", type=str, help="Chosen LOCAL package to release")
+    parser.add_argument("-pr", "--prod_release", type=str, help="Chosen version of the package to release on PROD")
     
 
 
     args = parser.parse_args()
     wrapper = KLauncher_rez()
+    wrapper.set_arguments(args)
 
     try:
-        wrapper.set_arguments(args)
         if args.info:
             k_launcher_info.print_k_launcher_documentation_rez()
 
