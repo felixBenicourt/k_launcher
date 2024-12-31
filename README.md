@@ -28,11 +28,7 @@ This tool simplifies and automates Git workflows for production pipelines. It pr
 - **Commit Changes**: Stage and commit changes with meaningful messages.
 - **Tag Management**: Create and manage tags for versioning and releases.
 
-### **4. Pull Requests and Merging**
-- **Automated Pull Requests**: Create pull requests to merge feature branches into the main branch.
-- **Merge Branches**: Safely merge branches into production-ready states.
-
-### **5. Release Management**
+### **4. Release Management**
 - **Automated Releases**: Push changes to production (`PROD`) environments with minimal effort.
 
 ## Benefits
@@ -41,13 +37,6 @@ The tool is designed to fit seamlessly into production pipelines, handling tasks
 
 ### **Version Control Mastery**
 By automating Git workflows, this tool eliminates manual errors and ensures that team collaboration is streamlined.
-
-### **Scalable and Adaptable**
-- Supports custom paths and configurations, making it adaptable to various studio pipelines.
-- Simplifies workflows for both technical and non-technical team members.
-
-### **Reliability and Efficiency**
-Extensive testing ensures robustness in handling all critical Git operations, from branching to releasing.
 
 ## Use Cases
 - **Local to Production Workflow**: Grab packages from production, develop locally, and push back to production with proper versioning and releases.
@@ -58,7 +47,7 @@ Extensive testing ensures robustness in handling all critical Git operations, fr
 1. **Cloning Packages**: Run the command to clone a package from production.
 2. **Branching**: Create or switch to a development branch.
 3. **Committing Changes**: Add and commit your changes with a meaningful message.
-4. **Tagging and Pull Requests**: Tag your commit and open a pull request to merge your branch into the main branch.
+4. **Pull Requests**: open a pull request to merge your branch into the main branch.
 5. **Releasing to Production**: Merge the pull request and execute the release command to push changes to production.
 
 ## Technical Details
