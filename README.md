@@ -45,7 +45,7 @@ Usage:
 
 Arguments (args*):
     -c, --config : name of the config you're working on.
-    -co, --context : Display the current context.
+    -co, --context : display the current context.
     -p, --package : package to load with the environment.
     -a, --add : additional packages to be added.
     -l, --launch : launch the DCC software by name.
