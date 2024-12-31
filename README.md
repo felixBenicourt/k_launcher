@@ -12,12 +12,69 @@
 
 `k_launcher` is a command-line utility designed for managing different configurations and launching DCC (Digital Content Creation) tools such as Maya, Houdini, and more, with custom environment settings and packages. The tool simplifies the process of working with different configurations, packages, and contexts.
 
-## Features
+## Overview
+This tool simplifies and automates Git workflows for production pipelines. It provides functionality to manage packages, branches, commits, tags, pull requests, and releases seamlessly, ensuring efficiency and reliability in studio environments.
 
-- **Environment Management**: Manage and set up environment variables based on the selected configuration.
-- **DCC Tool Launch**: Launch popular DCC tools like Maya, Houdini, and others with the correct configuration and environment setup.
-- **Package Management**: Add and remove switch packages for DCC tools.
-- **Context Management**: Save and load context configurations to resume workflows.
+## Features
+### **1. Package Management**
+- **Grab Packages**: Easily fetch packages from production to local environments.
+- **Clone Packages**: Clone packages with or without specifying custom paths.
+
+### **2. Branch Management**
+- **Create Branches**: Automatically create new branches for development.
+- **Checkout Branches**: Switch between branches effortlessly.
+
+### **3. Commit and Tag Management**
+- **Commit Changes**: Stage and commit changes with meaningful messages.
+- **Tag Management**: Create and manage tags for versioning and releases.
+
+### **4. Pull Requests and Merging**
+- **Automated Pull Requests**: Create pull requests to merge feature branches into the main branch.
+- **Merge Branches**: Safely merge branches into production-ready states.
+
+### **5. Release Management**
+- **Automated Releases**: Push changes to production (`PROD`) environments with minimal effort.
+
+## Benefits
+### **Advanced Production Pipeline Integration**
+The tool is designed to fit seamlessly into production pipelines, handling tasks like environment synchronization, version control, and release management with precision.
+
+### **Version Control Mastery**
+By automating Git workflows, this tool eliminates manual errors and ensures that team collaboration is streamlined.
+
+### **Scalable and Adaptable**
+- Supports custom paths and configurations, making it adaptable to various studio pipelines.
+- Simplifies workflows for both technical and non-technical team members.
+
+### **Reliability and Efficiency**
+Extensive testing ensures robustness in handling all critical Git operations, from branching to releasing.
+
+## Use Cases
+- **Local to Production Workflow**: Grab packages from production, develop locally, and push back to production with proper versioning and releases.
+- **Team Collaboration**: Manage branches and pull requests across multiple contributors with ease.
+- **Versioning and Releases**: Tag commits, create pull requests, and push releases with confidence.
+
+## How It Works
+1. **Cloning Packages**: Run the command to clone a package from production.
+2. **Branching**: Create or switch to a development branch.
+3. **Committing Changes**: Add and commit your changes with a meaningful message.
+4. **Tagging and Pull Requests**: Tag your commit and open a pull request to merge your branch into the main branch.
+5. **Releasing to Production**: Merge the pull request and execute the release command to push changes to production.
+
+## Technical Details
+### **Supported Workflows**
+- Git operations: cloning, branching, committing, tagging, pull requests, merging, and releases.
+- Environment-specific paths: local and production synchronization.
+
+### **Automation Highlights**
+- Simplifies branching and merging workflows.
+- Ensures consistency with automated pull requests and tagging.
+- Reduces downtime with reliable package handling and releases.
+
+## Future Enhancements
+- Add a graphical user interface (GUI) for non-technical users.
+- Integrate CI/CD pipelines for automated testing and deployment.
+
 
 ## Prerequisites
 
