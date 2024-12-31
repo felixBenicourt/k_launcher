@@ -47,8 +47,7 @@ By automating Git workflows, this tool eliminates manual errors and ensures that
 1. **Cloning Packages**: Run the command to clone a package from production.
 2. **Branching**: Create or switch to a development branch.
 3. **Committing Changes**: Add and commit your changes with a meaningful message.
-4. **Pull Requests**: open a pull request to merge your branch into the main branch.
-5. **Releasing to Production**: Merge the pull request and execute the release command to push changes to production.
+4. **Releasing to Production**: Merge the pull request and execute the release command to push changes to production.
 
 ## Technical Details
 ### **Supported Workflows**
