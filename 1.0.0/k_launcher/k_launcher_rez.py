@@ -168,7 +168,6 @@ def main():
 
         if args.context:
             wrapper.get_data_context()
-            print(wrapper.package)
 
         elif args.release and args.prod_release:
             src_path = os.path.join(CONSTANTS.rootLocalFolder, args.release.split("-")[0], args.release.split("-")[-1])
