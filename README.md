@@ -55,7 +55,6 @@ Arguments (args*):
     -grab : grab the package in PROD to LOCAL.
     -switch : switch the package to the local version.
     -release : release the package in PROD with a specific version.
-    -package_release : specify the version of the package to release in PROD.
 
 Example Launch Commands:
     python k_launcher_rez.py --info
