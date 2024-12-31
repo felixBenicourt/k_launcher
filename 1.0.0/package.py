@@ -14,5 +14,4 @@ def commands():
     env.PATH.append("{root}/k_launcher")
     alias("rez", "python {root}/k_launcher/k_launcher_rez.py")
     alias("git", "python {root}/k_launcher/k_launcher_git.py")
-    alias("test", "python {root}/k_launcher/k_launcher_test_ui.py")
 
