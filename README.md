@@ -44,22 +44,22 @@ Usage:
     python k_launcher_rez.py [args*]
 
 Arguments (args*):
-    -config : name of the config you're working on.
-    -package : package to load with the environment.
-    -add : additional packages to be added.
-    -launch : launch the DCC software by name.
-    -save : save the context/configuration.
-    -load : load the saved context/configuration.
-    -info : display information about the tool.
-    -echo : display the current settings.
-    -grab : grab the package in PROD to LOCAL.
-    -switch : switch the package to the local version.
-    -release : Chosen LOCAL package to release.
-    -prod_release : Chosen version of the package to release on PROD.
+    -c, --config : name of the config you're working on.
+    -p, --package : package to load with the environment.
+    -a, --add : additional packages to be added.
+    -l, --launch : launch the DCC software by name.
+    -s, --save : save the context/configuration.
+    -lo, --load : load the saved context/configuration.
+    -i, --info : display information about the tool.
+    -e, --echo : display the current settings.
+    -g, --grab : grab the package in PROD to LOCAL.
+    -w, --switch : switch the package to the local version.
+    -r, --release : chosen LOCAL package to release.
+    -pr, --prod_release : chosen version of the package to release on PROD.
 
 Example Launch Commands:
     python k_launcher_rez.py --info
-    python k_launcher_rez.py --config dev -launch maya -add myPackage
+    python k_launcher_rez.py --config dev --launch maya --add myPackage
     python k_launcher_rez.py --save devConfig
     python k_launcher_rez.py --load prodConfig
 
