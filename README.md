@@ -71,12 +71,6 @@ By automating Git workflows, this tool eliminates manual errors and ensures that
 - Required software installed (e.g., Maya, Houdini)
 - Correct configuration files set up in the `CONTEXT` folder. These configuration files should define the environment variables and packages needed for your workflow.
 
-## Installation
-
-1. Ensure `rez` is installed and configured in your environment.
-2. Clone the repository or copy the `k_launcher` tool to your local system.
-3. Set up the `CONTEXT` folder with the necessary configuration files.
-
 ## Usage
 
 ### Rez Commands
