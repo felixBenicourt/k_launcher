@@ -71,6 +71,7 @@ By automating Git workflows, this tool eliminates manual errors and ensures that
 - Required software installed (e.g., Maya, Houdini)
 - Correct configuration files set up in the `CONTEXT` folder. These configuration files should define the environment variables and packages needed for your workflow.
 
+
 ## Usage
 
 ### Rez Commands
@@ -97,6 +98,7 @@ Arguments (args*):
     -w, --switch : switch the package to the local version.
     -r, --release : chosen LOCAL package to release.
     -pr, --prod_release : chosen version of the package to release on PROD.
+    -vs, --vs_code : launch vs code with the path and package.
 
 Example Launch Commands:
     python k_launcher_rez.py --info
@@ -191,6 +193,7 @@ Arguments (args*):
     -gu, --git_url : Git URL for cloning.
     -b, --branch : Branch name.
     -m, --msg : Commit message.
+    -vs, --vs_code : launch vs code with the path and package.
 
 Description:
     The Git functionality of `k_launcher` is designed to simplify the process of managing Git repositories. 
