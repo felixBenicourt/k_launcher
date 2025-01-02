@@ -151,8 +151,8 @@ class KLauncher_git(k_launcher_git_cmd.k_git_cmd,
                     sys.exit(1)
 
             if args.git_create:
-                if self.package and args.git_tag:
-                    self.create_branch(self.path, self.package, self.package, args.git_tag)
+                if self.package and self.branch:
+                    self.create_branch(self.path, self.package, self.branch)
                 else:
                     logging.error("Missing package or git tag for git branch creation.")
                     sys.exit(1)
