@@ -10,10 +10,20 @@
 - [Git Commands](#git-commands)
 - [License](#license)
 
-`k_launcher` is a command-line utility designed for managing different configurations and launching DCC (Digital Content Creation) tools such as Maya, Houdini, and more, with custom environment settings and packages. The tool simplifies the process of working with different configurations, packages, and contexts.
 
-## Overview
-This tool simplifies and automates Git workflows for production pipelines. It provides functionality to manage packages, branches, commits, tags, pull requests, and releases seamlessly, ensuring efficiency and reliability in studio environments.
+`k_launcher` is a versatile command-line utility designed to streamline the management of configurations and the launching of DCC (Digital Content Creation) tools such as Maya, Houdini, and more. With its ability to handle custom environment settings and packages, `k_launcher` simplifies complex workflows, enabling artists and developers to focus on their work without worrying about setup intricacies.
+
+
+## Key Features
+
+- **Configuration Management**: Easily manage various environment settings and packages for DCC tools.
+- **Git Workflow Automation**: Simplifies Git operations within production pipelines, offering seamless handling of packages, branches, commits, tags, pull requests, and releases.
+- **Studio Efficiency**: Ensures a reliable and efficient workflow, tailored for studio environments.
+
+## How `k_launcher` Enhances Workflow
+
+`k_launcher` intelligently saves session-specific information based on the terminal being used. This allows users to retrieve and reuse their configurations, context, and environment settings effortlessly across sessions. By automating and organizing these elements, `k_launcher` provides a smoother and more productive experience for managing digital content creation tools and production pipelines.
+
 
 ## Features
 ### **1. Package Management**
