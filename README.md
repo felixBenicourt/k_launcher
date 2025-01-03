@@ -18,7 +18,6 @@
 
 - **Configuration Management**: Easily manage various environment settings and packages for DCC tools.
 - **Git Workflow Automation**: Simplifies Git operations within production pipelines, offering seamless handling of packages, branches, commits, tags, pull requests, and releases.
-- **Studio Efficiency**: Ensures a reliable and efficient workflow, tailored for studio environments.
 
 ## How `k_launcher` Enhances Workflow
 
