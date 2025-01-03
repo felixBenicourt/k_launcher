@@ -22,7 +22,7 @@
 
 ## How `k_launcher` Enhances Workflow
 
-`k_launcher` intelligently saves session-specific information based on the terminal being used. This allows users to retrieve and reuse their configurations, context, and environment settings effortlessly across sessions. By automating and organizing these elements, `k_launcher` provides a smoother and more productive experience for managing digital content creation tools and production pipelines.
+`k_launcher` intelligently saves session-specific information based on the terminal being used. This allows users to retrieve and reuse their configurations, context, and environment settings effortlessly across your session. By automating and organizing these elements, `k_launcher` provides a smoother and more productive experience for managing digital content creation tools and production pipelines.
 
 
 ## Features
