@@ -14,6 +14,11 @@
 `k_launcher` is a versatile command-line utility designed to streamline the management of configurations and the launching of DCC (Digital Content Creation) tools such as Maya, Houdini, and more. With its ability to handle custom environment settings and packages, `k_launcher` simplifies complex workflows, enabling artists and developers to focus on their work without worrying about setup intricacies.
 
 
+## Overview
+
+[![Watch the video](https://i.imgur.com/RkaPYbH.png)](https://vimeo.com/899695629)
+
+
 ## Key Features
 
 - **Configuration Management**: Easily manage various environment settings and packages for DCC tools.
