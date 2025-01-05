@@ -16,7 +16,7 @@
 
 ## Overview
 
-[![Watch the video](https://i.imgur.com/RkaPYbH.png)](https://vimeo.com/899695629)
+[![Watch the video](https://i.imgur.com/RkaPYbH.png)](https://vimeo.com/manage/videos/1044001514)
 
 
 ## Key Features
