@@ -119,11 +119,23 @@ class KLauncher_rez(k_launcher_rez_cmds.k_cmds,
             env = os.environ.copy()
             command = f"{self.generate_rez_command()}"
             logging.info(f"Executing command: {command}")
-            subprocess.run(command, shell=True, check=True, capture_output=True, text=True, env=env)
+
+            result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True, env=env)
+
+            logging.info("Command Output:")
+            if result.stdout:
+                logging.info(result.stdout)
+
+            if result.stderr:
+                logging.error(result.stderr)
+
         except subprocess.CalledProcessError as e:
-            logging.error(f"Error executing command: {e}")
+            logging.error(f"Executing command: {e}")
             logging.error("Command Output:")
-            logging.error(e.stdout)
+            if e.stdout:
+                logging.error(e.stdout)
+            if e.stderr:
+                logging.error(e.stderr)
 
 
 def main():
