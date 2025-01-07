@@ -127,11 +127,11 @@ class KLauncher_rez(k_launcher_rez_cmds.k_cmds,
                 logging.info(result.stdout)
 
             if result.stderr:
-                logging.error(result.stderr)
+                logging.warning(result.stderr)
 
         except subprocess.CalledProcessError as e:
-            logging.error(f"Executing command: {e}")
-            logging.error("Command Output:")
+            logging.warning(f"Executing command: {e}")
+            logging.warning("Command Output:")
             if e.stdout:
                 logging.error(e.stdout)
             if e.stderr:
