@@ -5,6 +5,7 @@ import logging
 import subprocess
 import os
 import sys
+import shutil
 
 # custom packages import
 import k_config.main
@@ -185,6 +186,7 @@ def main():
                 k_launcher_utils.release_package(src_path, dest_path)
 
             elif os.path.exists(dest_path):
+                shutil.rmtree(dest_path)
                 os.rmdir(dest_path)
                 k_launcher_utils.release_package(src_path, dest_path)
 
